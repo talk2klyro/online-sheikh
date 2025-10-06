@@ -1,87 +1,635 @@
-<!DOCTYP<!DOCTYPE html>
+EduBridge Prototype — Multi-page Codebase
+
+This document contains a multi-file prototype for EduBridge (MVP). Save these files in the structure shown and open index.html locally to preview.
+
+
+---
+
+File: index.html
+
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Account Dashboard Prototype</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EduBridge — Smart Class Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script defer src="/assets/js/main.js"></script>
 </head>
 <body>
-
-  <!-- HEADER -->
-  <header class="header">
-    <div class="user-avatar">A</div>
-    <div class="user-info">
-      <h2>Hello, Ashraf</h2>
-      <p>08069096830</p>
-    </div>
-    <div class="header-icons">
-      <button class="icon-btn">🔍</button>
-      <button class="icon-btn notification">
-        🔔<span class="badge">14</span>
-      </button>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/index.html">EduBridge</a>
+      <nav class="main-nav">
+        <a href="/index.html">Home</a>
+        <a href="/classes.html">Classes</a>
+        <a href="/tutors.html">Tutors</a>
+        <a href="/enroll.html">Enroll</a>
+        <a href="/contact.html">Contact</a>
+        <button id="gc-nav-btn" class="btn btn-outline">Google Classroom</button>
+      </nav>
     </div>
   </header>
 
-  <!-- PROMO CARD -->
-  <section class="promo-card">
-    <p><strong>Hot Deal:</strong> Get 12.5GB + 2GB Night Streaming + 300MB YouTube for ₦5,500. Valid for 30 days.</p>
-    <button class="claim-btn">Claim</button>
-  </section>
+  <main class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <h1>Connect tutors and learners — fast, secure, and beautiful.</h1>
+        <p>EduBridge helps schools, tutors, and parents manage classes, collect payments and keep records — using simple tools like JSON, JotForm and Paystack.</p>
+        <div class="cta-row">
+          <a href="/classes.html" class="btn btn-primary">Browse Classes</a>
+          <a href="/enroll.html" class="btn btn-secondary">Create / Enroll</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <img src="/assets/images/hero-illustration.svg" alt="EduBridge illustration" />
+      </div>
+    </section>
 
-  <!-- BALANCE SECTION -->
-  <section class="balance-section">
-    <div class="balance-card">
-      <h3>📞 Airtime Balance</h3>
-      <h1>₦4.93</h1>
-      <p>Bonus: ₦0</p>
-      <button class="action-btn">Buy Airtime</button>
+    <section class="featured">
+      <h2>Featured Classes</h2>
+      <div id="featured-grid" class="classes-grid"></div>
+    </section>
+
+    <section class="tutors-preview">
+      <h2>Top Tutors</h2>
+      <div id="tutors-grid" class="tutors-grid"></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 EduBridge — Built for schools, tutors & learners.</p>
+      <small>Prototype: JSON + JotForm + Paystack (sandbox). Replace placeholders before production.</small>
     </div>
+  </footer>
 
-    <div class="balance-card">
-      <h3>📶 Data Balance</h3>
-      <h1>0 MB</h1>
-      <p>Bonus: 0 MB</p>
-      <button class="action-btn">Buy Data</button>
-    </div>
-  </section>
-
-  <button class="view-details">View Details</button>
-
-  <!-- QUICK ACTIONS -->
-  <section class="quick-actions">
-    <div class="action-item">
-      <div class="icon">💡</div>
-      <p>FibreX</p>
-    </div>
-    <div class="action-item">
-      <div class="icon">🌐</div>
-      <p>Roaming</p>
-    </div>
-    <div class="action-item">
-      <div class="icon">➡️</div>
-      <p>Transfer</p>
-    </div>
-    <div class="action-item">
-      <div class="icon">🎁</div>
-      <p>Offers</p>
-    </div>
-  </section>
-
-  <!-- NOTICE BANNER -->
-  <div class="notice-banner">
-    🎉 Surprise a loved one with data and get rewarded!
-  </div>
-
-  <!-- BOTTOM NAV -->
-  <nav class="bottom-nav">
-    <button class="nav-item active">🏠<span>Home</span></button>
-    <button class="nav-item">🎮<span>Play</span></button>
-    <button class="nav-item main">⬜</button>
-    <button class="nav-item">❓<span>Help</span></button>
-    <button class="nav-item">⋯<span>More</span></button>
-  </nav>
-
-  <script src="app.js"></script>
+  <!-- Page-specific scripts -->
+  <script defer src="/assets/js/classes.js"></script>
+  <script defer src="/assets/js/tutors.js"></script>
 </body>
-                                </html>
+</html>
+
+
+---
+
+File: classes.html
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Classes — EduBridge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script defer src="/assets/js/main.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/index.html">EduBridge</a>
+      <nav class="main-nav">
+        <a href="/index.html">Home</a>
+        <a href="/classes.html">Classes</a>
+        <a href="/tutors.html">Tutors</a>
+        <a href="/enroll.html">Enroll</a>
+        <a href="/contact.html">Contact</a>
+        <button id="gc-nav-btn-2" class="btn btn-outline">Google Classroom</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="page-head">
+      <h1>All Classes</h1>
+      <p>Find the right class or tutor — filter or search to refine results.</p>
+    </section>
+
+    <section>
+      <div class="controls">
+        <input id="search" type="search" placeholder="Search classes, subjects, tutors..." />
+      </div>
+
+      <div id="classes-grid" class="classes-grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 EduBridge</p>
+    </div>
+  </footer>
+
+  <script defer src="/assets/js/classes.js"></script>
+</body>
+</html>
+
+
+---
+
+File: tutors.html
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tutors — EduBridge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script defer src="/assets/js/main.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/index.html">EduBridge</a>
+      <nav class="main-nav">
+        <a href="/index.html">Home</a>
+        <a href="/classes.html">Classes</a>
+        <a href="/tutors.html">Tutors</a>
+        <a href="/enroll.html">Enroll</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Verified Tutors</h1>
+    <div id="tutors-grid" class="tutors-grid"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 EduBridge</p>
+    </div>
+  </footer>
+
+  <script defer src="/assets/js/tutors.js"></script>
+</body>
+</html>
+
+
+---
+
+File: enroll.html
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enroll — EduBridge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script defer src="/assets/js/main.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/index.html">EduBridge</a>
+      <nav class="main-nav">
+        <a href="/index.html">Home</a>
+        <a href="/classes.html">Classes</a>
+        <a href="/tutors.html">Tutors</a>
+        <a href="/enroll.html">Enroll</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container enroll-page">
+    <h1>Enroll / Payment</h1>
+    <p id="class-summary">Loading class details…</p>
+
+    <!-- JotForm embed placeholder -->
+    <!-- Replace YOUR_JOTFORM_EMBED_URL below with your JotForm embed URL or script. -->
+    <div id="jotform-embed" class="jotform-embed">
+      <iframe id="jotform-frame" title="Enrollment form" src="https://form.jotform.com/YOUR_FORM_ID" frameborder="0" style="width:100%;height:700px;">Loading…</iframe>
+    </div>
+
+    <div class="payment-row">
+      <p>Or test Paystack payment (sandbox):</p>
+      <button id="paystack-btn" class="btn btn-primary">Pay with Paystack</button>
+    </div>
+
+    <small>Note: Replace `YOUR_PAYSTACK_PUBLIC_KEY` in <code>/assets/js/main.js</code> before going live.</small>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 EduBridge</p>
+    </div>
+  </footer>
+
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <script defer src="/assets/js/classes.js"></script>
+</body>
+</html>
+
+
+---
+
+File: contact.html
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — EduBridge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/index.html">EduBridge</a>
+      <nav class="main-nav">
+        <a href="/index.html">Home</a>
+        <a href="/classes.html">Classes</a>
+        <a href="/tutors.html">Tutors</a>
+        <a href="/enroll.html">Enroll</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Contact Us</h1>
+    <!-- Simple JotForm embed for contact inquiries. Replace ACTION_URL with your JotForm or backend. -->
+    <form action="https://form.jotform.com/YOUR_CONTACT_FORM_ID" method="post" target="_blank" class="contact-form">
+      <label>Name <input name="name" required></label>
+      <label>Email <input name="email" type="email" required></label>
+      <label>Message <textarea name="message" rows="5"></textarea></label>
+      <button class="btn btn-primary">Send</button>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 EduBridge</p>
+    </div>
+  </footer>
+</body>
+</html>
+
+
+---
+
+File: /assets/css/style.css
+
+:root{
+  --bg:#fff;
+  --green:#3aa76d; /* primary */
+  --green-2:#2f9a5e;
+  --soft-yellow:#f6e58d;
+  --beige:#f7f3ec;
+  --muted:#6b7280;
+  --card-shadow: 0 6px 18px rgba(47,58,75,0.06);
+  --radius:14px;
+  --max-width:1100px;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--beige);color:#0f172a}
+.container{max-width:var(--max-width);margin:0 auto;padding:24px}
+.site-header{background:linear-gradient(180deg, #ffffffcc, transparent);backdrop-filter: blur(4px);position:sticky;top:0;z-index:40;border-bottom:1px solid rgba(0,0,0,0.04)}
+.header-inner{display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:700;font-size:1.1rem;color:var(--green);text-decoration:none}
+.main-nav a{margin-left:16px;color:var(--muted);text-decoration:none}
+.main-nav .btn{margin-left:12px}
+.hero{display:flex;gap:32px;align-items:center;padding:40px 0}
+.hero-left{flex:1}
+.hero-right{flex:1;text-align:right}
+.hero-right img{max-width:80%;border-radius:12px}
+.btn{padding:10px 16px;border-radius:10px;border:0;cursor:pointer;font-weight:600}
+.btn-primary{background:var(--green);color:white}
+.btn-secondary{background:transparent;border:2px solid var(--green);color:var(--green)}
+.btn-outline{background:transparent;border:1px solid rgba(0,0,0,0.06);padding:8px 10px;border-radius:10px}
+.classes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-top:18px}
+.card{background:white;border-radius:var(--radius);box-shadow:var(--card-shadow);padding:16px;display:flex;flex-direction:column;gap:12px}
+.card .meta{display:flex;justify-content:space-between;align-items:center}
+.card h3{margin:0;font-size:1.05rem}
+.card p{margin:0;color:var(--muted);font-size:0.92rem}
+.card .price{font-weight:700;color:var(--green-2)}
+.card .actions{display:flex;gap:10px}
+.tutors-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.tutor{display:flex;gap:12px;align-items:center}
+.tutor img{width:64px;height:64px;border-radius:12px;object-fit:cover}
+.controls{display:flex;justify-content:flex-end;margin:8px 0}
+.controls input[type="search"]{padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.08)}
+.site-footer{padding:20px 0;color:var(--muted);text-align:center}
+@media (max-width:800px){.hero{flex-direction:column}.hero-right{order:-1;text-align:left}.container{padding:16px}}
+
+
+---
+
+File: /assets/js/main.js
+
+// EduBridge - main utilities
+
+const CONFIG = {
+  PAYSTACK_PUBLIC_KEY: 'YOUR_PAYSTACK_PUBLIC_KEY', // << REPLACE before production
+  PAYSTACK_DEFAULT_EMAIL: 'student@example.com'
+}
+
+// simple DOM helper
+const $ = sel => document.querySelector(sel)
+const $$ = sel => Array.from(document.querySelectorAll(sel))
+
+function fetchJSON(path){
+  return fetch(path).then(r => r.ok ? r.json() : Promise.reject(r.status))
+}
+
+function formatCurrency(n){
+  return '₦' + (n).toLocaleString();
+}
+
+function getQueryParam(key){
+  const url = new URL(window.location.href);
+  return url.searchParams.get(key)
+}
+
+// Google Classroom quick-share helper
+function openGoogleClassroomShare(url){
+  if(!url) return alert('No Classroom URL provided.');
+  const shareUrl = 'https://classroom.google.com/u/0/share?url=' + encodeURIComponent(url)
+  window.open(shareUrl, '_blank')
+}
+
+// Paystack inline helper (sandbox-ready if key is for test)
+function payWithPaystack({email=CONFIG.PAYSTACK_DEFAULT_EMAIL, amount=1000, refPrefix='EDUBRIDGE'}){
+  if(!window.PaystackPop){
+    return alert('Paystack script not loaded. Check your connection.');
+  }
+  const handler = PaystackPop.setup({
+    key: CONFIG.PAYSTACK_PUBLIC_KEY,
+    email,
+    amount: amount * 100, // kobo
+    currency: 'NGN',
+    ref: refPrefix + Math.floor(Math.random()*1000000),
+    onClose: function(){
+      console.log('Payment window closed');
+    },
+    callback: function(response){
+      // response.reference — send this to your backend to verify and persist
+      alert('Payment complete. Reference: ' + response.reference);
+      console.log('PAYSTACK_CALLBACK', response);
+    }
+  });
+  handler.openIframe();
+}
+
+// init Google Classroom buttons in nav
+function initGCButtons(){
+  const btn = $('#gc-nav-btn') || $('#gc-nav-btn-2')
+  if(btn){
+    btn.addEventListener('click', ()=> openGoogleClassroomShare(window.location.href))
+  }
+}
+
+// Hook for page scripts
+document.addEventListener('DOMContentLoaded', ()=>{
+  initGCButtons();
+
+  const payBtn = $('#paystack-btn')
+  if(payBtn){
+    payBtn.addEventListener('click', ()=>{
+      // sample amount: read from query param or default 2000
+      const a = parseInt(getQueryParam('amount')) || 2000
+      payWithPaystack({amount:a})
+    })
+  }
+})
+
+
+---
+
+File: /assets/js/classes.js
+
+// classes page renderer + helpers
+
+function renderClassCard(c){
+  const el = document.createElement('div')
+  el.className = 'card'
+  el.innerHTML = `
+    <div class="meta">
+      <div>
+        <h3>${c.title}</h3>
+        <p>${c.tutorName} • ${c.schedule}</p>
+      </div>
+      <div class="price">${formatCurrency(c.price)}</div>
+    </div>
+    <p>${c.short}</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/enroll.html?classId=${c.id}&amount=${c.price}">Enroll</a>
+      <button class="btn btn-outline gc-btn" data-url="${c.classroomUrl || ''}">Google Classroom</button>
+    </div>
+  `
+  return el
+}
+
+function loadFeatured(){
+  const target = document.getElementById('featured-grid')
+  if(!target) return
+  fetchJSON('/data/classes.json').then(data =>{
+    // pick first 3
+    data.slice(0,3).forEach(c => target.appendChild(renderClassCard(c)))
+  }).catch(console.error)
+}
+
+function loadAllClasses(){
+  const grid = document.getElementById('classes-grid')
+  const search = document.getElementById('search')
+  if(!grid) return
+  fetchJSON('/data/classes.json').then(data =>{
+    grid.innerHTML = ''
+    data.forEach(c => grid.appendChild(renderClassCard(c)))
+
+    // add GC listeners
+    $$('.gc-btn').forEach(b => b.addEventListener('click', e =>{
+      const url = e.currentTarget.dataset.url
+      if(!url) return alert('No Google Classroom URL configured for this class.')
+      openGoogleClassroomShare(url)
+    }))
+
+    if(search){
+      search.addEventListener('input', ()=>{
+        const q = search.value.toLowerCase()
+        grid.innerHTML = ''
+        data.filter(it => (it.title+it.tutorName+it.subject).toLowerCase().includes(q))
+            .forEach(c => grid.appendChild(renderClassCard(c)))
+      })
+    }
+  }).catch(err =>{
+    grid.innerHTML = '<p>Failed to load classes.</p>'
+    console.error(err)
+  })
+}
+
+// for enroll page: show class summary if classId present
+function showClassSummaryOnEnroll(){
+  const summary = document.getElementById('class-summary')
+  if(!summary) return
+  const id = getQueryParam('classId')
+  if(!id) return summary.textContent = 'Please choose a class to enroll.'
+  fetchJSON('/data/classes.json').then(data =>{
+    const c = data.find(x => String(x.id) === String(id))
+    if(!c) return summary.textContent = 'Class not found.'
+    summary.innerHTML = `<strong>${c.title}</strong> by ${c.tutorName} — ${formatCurrency(c.price)} <br>${c.short}`
+    // pre-fill JotForm iframe src with class data via query string if desired
+    const iframe = document.getElementById('jotform-frame')
+    if(iframe){
+      const src = new URL(iframe.src)
+      src.searchParams.set('classId', c.id)
+      src.searchParams.set('classTitle', c.title)
+      iframe.src = src.toString()
+    }
+  }).catch(err => console.error(err))
+}
+
+// initialize loader depending on presence of elements
+document.addEventListener('DOMContentLoaded', ()=>{
+  if(document.getElementById('featured-grid')) loadFeatured()
+  if(document.getElementById('classes-grid')) loadAllClasses()
+  if(document.getElementById('class-summary')) showClassSummaryOnEnroll()
+})
+
+
+---
+
+File: /assets/js/tutors.js
+
+// tutors page renderer
+function renderTutorCard(t){
+  const el = document.createElement('div')
+  el.className = 'card tutor'
+  el.innerHTML = `
+    <img src="${t.photo || '/assets/images/avatar-placeholder.png'}" alt="${t.name}" />
+    <div>
+      <h3>${t.name}</h3>
+      <p>${t.subjects.join(', ')}</p>
+      <p>Rating: ${t.rating} ⭐</p>
+    </div>
+  `
+  return el
+}
+
+function loadTutors(){
+  const grid = document.getElementById('tutors-grid')
+  if(!grid) return
+  fetchJSON('/data/tutors.json').then(data =>{
+    grid.innerHTML = ''
+    data.forEach(t => grid.appendChild(renderTutorCard(t)))
+  }).catch(err =>{
+    grid.innerHTML = '<p>Failed to load tutors.</p>'
+    console.error(err)
+  })
+}
+
+document.addEventListener('DOMContentLoaded', ()=> loadTutors())
+
+
+---
+
+File: /data/classes.json
+
+[
+  {
+    "id": 1,
+    "title": "JAMB Maths Intensive",
+    "subject": "Mathematics",
+    "tutorId": 101,
+    "tutorName": "Mr. A. Ade",
+    "price": 2500,
+    "schedule": "Mon & Wed — 4pm - 6pm",
+    "short": "Exam-focused JAMB maths class with weekly mocks.",
+    "classroomUrl": "https://example.com/classroom/jamb-maths"
+  },
+  {
+    "id": 2,
+    "title": "WAEC Physics Crash",
+    "subject": "Physics",
+    "tutorId": 102,
+    "tutorName": "Ms. B. Chukwu",
+    "price": 3000,
+    "schedule": "Tue & Thu — 5pm - 7pm",
+    "short": "Concept-driven physics lessons with practical examples.",
+    "classroomUrl": ""
+  },
+  {
+    "id": 3,
+    "title": "Primary English — Reading Club",
+    "subject": "English",
+    "tutorId": 103,
+    "tutorName": "Mrs. C. Nwoye",
+    "price": 1500,
+    "schedule": "Sat — 9am - 11am",
+    "short": "Fun reading club to build literacy and confidence.",
+    "classroomUrl": "https://example.com/classroom/reading-club"
+  }
+]
+
+
+---
+
+File: /data/tutors.json
+
+[
+  {
+    "id": 101,
+    "name": "Mr. A. Ade",
+    "subjects": ["Mathematics", "Further Maths"],
+    "rating": 4.8,
+    "photo": "/assets/images/tutor-ade.jpg",
+    "bio": "10+ years tutoring experience, JAMB specialist."
+  },
+  {
+    "id": 102,
+    "name": "Ms. B. Chukwu",
+    "subjects": ["Physics", "Chemistry"],
+    "rating": 4.7,
+    "photo": "/assets/images/tutor-chukwu.jpg",
+    "bio": "Physics teacher with hands-on experiments."
+  }
+]
+
+
+---
+
+Helpful notes
+
+Replace placeholders: YOUR_PAYSTACK_PUBLIC_KEY, YOUR_FORM_ID, and contact form action URL.
+
+JotForm: you can embed the script snippet instead of the iframe for advanced pre-fills.
+
+Paystack: use test keys first, then verify the transaction on your server via Paystack verification endpoint.
+
+Google Classroom: we provided a quick-share button which opens the Classroom share dialog. For deep integration use the official Classroom API.
+
+
+
+---
+
+How to run locally
+
+1. Save the files into a folder with the same structure.
+
+
+2. Serve via a simple static server (recommended) — e.g. npx http-server from folder root, or open index.html directly (some browsers restrict fetch with file:// so a local server is preferred).
+
+
+3. Visit http://localhost:8080/index.html (or displayed port) and test.
+
+
+
+
+---
+
+(End of codebase)
+
