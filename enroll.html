@@ -1,0 +1,60 @@
+<!doct<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Enroll — EduBridge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <!-- Paystack inline loader is required for inline checkout -->
+  <script src="https://js.paystack.co/v1/inline.js" defer></script>
+  <script type="module" src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">EduBridge</a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="classes.html">Classes</a>
+        <a href="tutors.html">Tutors</a>
+        <a href="enroll.html">Enroll</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container enroll-page">
+    <h1>Enroll / Payment</h1>
+    <p id="class-summary">Loading class details…</p>
+
+    <!-- JotForm iframe (prefill via query params set by enroll.js) -->
+    <div id="jotform-embed" class="jotform-embed">
+      <iframe id="jotform-frame"
+              title="Enrollment form"
+              src="https://form.jotform.com/YOUR_FORM_ID"
+              frameborder="0"
+              style="width:100%;height:700px;"
+              loading="lazy">
+        Loading…
+      </iframe>
+    </div>
+
+    <div class="payment-row">
+      <p>Or test Paystack payment (sandbox):</p>
+      <button id="paystack-btn" class="btn btn-primary">Pay with Paystack</button>
+    </div>
+
+    <small>Note: Replace <code>YOUR_PAYSTACK_PUBLIC_KEY</code> in <code>assets/js/config/settings.js</code> and server side keys in <code>server/.env</code>.</small>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year4"></span> EduBridge</p>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year4').textContent = new Date().getFullYear();</script>
+</body>
+</html>
