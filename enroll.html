@@ -19,9 +19,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html">EduBridge</a>
-
       <button class="hamburger" aria-label="Toggle menu" onclick="document.querySelector('.main-nav').classList.toggle('open')">☰</button>
-
       <nav class="main-nav" aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a href="classes.html">Classes</a>
@@ -34,27 +32,10 @@
   </header>
 
   <main class="container enroll-page">
-    <h1>Enroll / Payment</h1>
-    <p id="class-summary">Loading class details…</p>
-
-    <!-- JotForm iframe -->
-    <div id="jotform-embed" class="jotform-embed">
-      <iframe id="jotform-frame"
-              title="Enrollment form"
-              src="https://form.jotform.com/YOUR_FORM_ID"
-              frameborder="0"
-              style="width:100%;height:700px;"
-              loading="lazy">
-        Loading…
-      </iframe>
+    <h1>Enroll in a Class</h1>
+    <div id="enroll-grid" class="classes-grid">
+      <p>Loading available classes…</p>
     </div>
-
-    <div class="payment-row">
-      <p>Or make payment via Flutterwave:</p>
-      <a href="https://flutterwave.com/pay/n2tafjnfo4zj" target="_blank" rel="noopener" class="btn btn-primary">Pay with Flutterwave</a>
-    </div>
-
-    <small>Note: Replace <code>YOUR_FORM_ID</code> with your actual JotForm ID. Flutterwave link is live and secure.</small>
   </main>
 
   <footer class="site-footer">
@@ -71,6 +52,33 @@
     document.getElementById('toggle-dark').addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
     });
+
+    // Load classes from JSON and render cards
+    fetch('assets/data/classes.json')
+      .then(res => res.json())
+      .then(data => {
+        const grid = document.getElementById('enroll-grid');
+        grid.innerHTML = ''; // Clear loading text
+
+        data.forEach(cls => {
+          const card = document.createElement('div');
+          card.className = 'card';
+
+          card.innerHTML = `
+            <h3>${cls.title}</h3>
+            <p class="price">₦${cls.price}</p>
+            <div class="actions">
+              <a href="https://flutterwave.com/pay/n2tafjnfo4zj" target="_blank" class="btn btn-primary">Pay with Flutterwave</a>
+            </div>
+          `;
+
+          grid.appendChild(card);
+        });
+      })
+      .catch(err => {
+        document.getElementById('enroll-grid').innerHTML = '<p>Failed to load classes.</p>';
+        console.error('Error loading classes.json:', err);
+      });
   </script>
 </body>
-          </html>
+  </html>
